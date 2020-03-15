@@ -4,6 +4,9 @@ class_name Player
 
 onready var camera = $Camera
 onready var audio_step = $Audio_Step
+onready var audio_swim = $Audio_Swim
+onready var audio_splash = $Audio_Splash
+onready var audio_leave_water = $Audio_LeaveWater
 
 onready var step_audio : Array = [
 	preload("res://audio/player_step1.ogg"),
@@ -22,12 +25,31 @@ func finish_turn() -> void:
 	level.player_turn_finished()
 
 func move(destination : Vector2) -> void:
-	if level.is_space_free(destination):
-		board_position = destination
+	var moved : bool = false
+	if underwater:
+		if level.is_water_at(destination):
+			board_position = destination
+			audio_swim.play()
+			moved = true
+		elif level.is_space_free(destination):
+			board_position = destination
+			audio_leave_water.play()
+			moved = true
+			underwater = false
+	else:
+		if level.is_water_at(destination):
+			board_position = destination
+			audio_splash.play()
+			underwater = true
+			moved = true
+		elif level.is_space_free(destination):
+			board_position = destination
+			audio_step.stream = step_audio[steps_taken % step_audio.size()]
+			audio_step.play()
+			moved = true
+	if moved:
 		finish_turn()
 		steps_taken += 1
-		audio_step.stream = step_audio[steps_taken % step_audio.size()]
-		audio_step.play()
 
 func try_to_interact(position : Vector2) -> void:
 	for object in get_tree().get_nodes_in_group("board_object"):
@@ -44,10 +66,6 @@ func _input(event : InputEvent) -> void:
 		facing += 90.0
 	if event.is_action_pressed("ui_right"):
 		facing -= 90.0
-	if event.is_action_pressed("ui_page_down"):
-		camera.translation.y = -0.1
-	if event.is_action_pressed("ui_page_up"):
-		camera.translation.y = 0.5
 	if event.is_action_pressed("ui_select"):
 		try_to_interact(board_position - Vector2(sin(deg2rad(facing)), cos(deg2rad(facing))))
 
@@ -55,6 +73,8 @@ func _process(delta : float) -> void:
 	rotation_degrees.y = lerp(rotation_degrees.y, facing, delta * 20.0)
 	translation.x = lerp(translation.x, board_position.x, delta * 20.0)
 	translation.z = lerp(translation.z, board_position.y, delta * 20.0)
+	var y_target : float = -0.1 if underwater else 0.5
+	camera.translation.y = lerp(camera.translation.y, y_target, delta * 20.0)
 
 func _ready() -> void:
 	facing = 0.0
