@@ -1,19 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://materials/concrete.tres" type="Material" id=1]
 [ext_resource path="res://materials/stone.tres" type="Material" id=2]
+[ext_resource path="res://objects/geometry/FloorCeiling.gd" type="Script" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 1, 1, 1 )
 
-[node name="FloorCeiling" type="Spatial"]
+[node name="FloorCeiling" type="Spatial" groups=[
+"board_object",
+]]
+script = ExtResource( 3 )
 
 [node name="Floor" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 2 )
 
-[node name="Floor2" type="MeshInstance" parent="."]
+[node name="Ceiling" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 mesh = SubResource( 1 )
 skeleton = NodePath("")

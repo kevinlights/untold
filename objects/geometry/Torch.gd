@@ -1,6 +1,9 @@
-extends Spatial
+extends "res://objects/geometry/BoardObject.gd"
 
 onready var light = $OmniLight
+
+func is_solid() -> bool:
+	return true
 
 func _process(delta : float) -> void:
 	var time : float = OS.get_ticks_msec() / 1000.0
