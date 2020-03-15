@@ -3,10 +3,19 @@ extends "res://objects/geometry/BoardObject.gd"
 class_name Player
 
 onready var camera = $Camera
+onready var audio_step = $Audio_Step
+
+onready var step_audio : Array = [
+	preload("res://audio/player_step1.ogg"),
+	preload("res://audio/player_step2.ogg"),
+	preload("res://audio/player_step3.ogg"),
+	preload("res://audio/player_step4.ogg")
+]
 
 var facing : float
 var underwater : bool
 var can_move : bool
+var steps_taken : int
 
 func finish_turn() -> void:
 	can_move = false
@@ -16,6 +25,9 @@ func move(destination : Vector2) -> void:
 	if level.is_space_free(destination):
 		board_position = destination
 		finish_turn()
+		steps_taken += 1
+		audio_step.stream = step_audio[steps_taken % step_audio.size()]
+		audio_step.play()
 
 func try_to_interact(position : Vector2) -> void:
 	for object in get_tree().get_nodes_in_group("board_object"):
@@ -47,3 +59,4 @@ func _process(delta : float) -> void:
 func _ready() -> void:
 	facing = 0.0
 	board_position = Vector2(translation.x, translation.z)
+	steps_taken = 0

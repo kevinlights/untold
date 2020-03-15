@@ -2,6 +2,8 @@ extends "res://objects/geometry/BoardObject.gd"
 
 onready var mesh = $Mesh
 onready var tween = $Tween
+onready var audio_open = $Audio_Open
+onready var audio_close = $Audio_Close
 
 var open : bool
 var turns_to_close : int
@@ -25,12 +27,14 @@ func interact() -> void:
 func open() -> void:
 	tween.interpolate_property(mesh, "translation", Vector3(0.0, 0.5, 0.0), Vector3(0.0, 1.35, 0.0), 0.5, Tween.TRANS_CIRC, Tween.EASE_OUT)
 	tween.start()
+	audio_open.play()
 	open = true
 	turns_to_close = 4
 
 func close() -> void:
 	tween.interpolate_property(mesh, "translation", Vector3(0.0, 1.35, 0.0), Vector3(0.0, 0.5, 0.0), 0.5, Tween.TRANS_CIRC, Tween.EASE_OUT)
 	tween.start()
+	audio_close.play()
 	open = false
 
 func tick() -> void:
