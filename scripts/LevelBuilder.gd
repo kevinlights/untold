@@ -7,6 +7,7 @@ const OBJ_PLAYER = preload("res://objects/Player.tscn")
 const OBJ_TORCH = preload("res://objects/geometry/Torch.tscn")
 const OBJ_DOOR = preload("res://objects/geometry/Door.tscn")
 const OBJ_CHEST = preload("res://objects/geometry/Chest.tscn")
+const OBJ_MONSTER = preload("res://objects/geometry/Monster.tscn")
 
 const COLOUR_FLOOR = Color("000000")
 const COLOUR_WALL = Color("595652")
@@ -56,6 +57,7 @@ func setup_level(map : Image, destination : Spatial) -> void:
 					place_object(OBJ_CHEST, x, y, destination)
 					place_object(OBJ_FLOOR, x, y, destination)
 				COLOUR_MONSTER:
+					place_object(OBJ_MONSTER, x, y, destination)
 					place_object(OBJ_FLOOR, x, y, destination)
 				COLOUR_DOOR:
 					place_object(OBJ_DOOR, x, y, destination)
