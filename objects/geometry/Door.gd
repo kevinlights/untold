@@ -15,6 +15,9 @@ func set_orientation() -> void:
 func is_solid() -> bool:
 	return not open
 
+func is_sight_blocker() -> bool:
+	return is_solid()
+
 func is_interactive() -> bool:
 	return true
 

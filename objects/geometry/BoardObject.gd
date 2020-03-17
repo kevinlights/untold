@@ -6,6 +6,9 @@ var level : Spatial
 func is_solid() -> bool:
 	return false
 
+func is_sight_blocker() -> bool:
+	return false
+
 func is_interactive() -> bool:
 	return false
 
