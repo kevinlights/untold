@@ -70,3 +70,7 @@ func get_route(from : Vector2, to : Vector2):
 func player_turn_finished() -> void:
 	get_tree().call_group("board_object", "tick")
 	player.can_move = true
+
+func level_clear() -> void:
+	GameSession.level += 1
+	get_tree().change_scene("res://scenes/Game.tscn")

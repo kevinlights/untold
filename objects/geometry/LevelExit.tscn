@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://textures/exit.png" type="Texture" id=1]
+[ext_resource path="res://objects/geometry/LevelExit.gd" type="Script" id=2]
+
+[node name="LevelExit" type="Spatial" groups=[
+"board_object",
+"chest",
+]]
+script = ExtResource( 2 )
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+billboard = 2
+shaded = true
+texture = ExtResource( 1 )
