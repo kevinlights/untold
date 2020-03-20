@@ -13,6 +13,7 @@ const OBJ_KEY = preload("res://objects/geometry/Key.tscn")
 const OBJ_LEVEL_EXIT = preload("res://objects/geometry/LevelExit.tscn")
 const OBJ_WEAK_WALL = preload("res://objects/geometry/WallWeak.tscn")
 const OBJ_GLYPH = preload("res://objects/geometry/Glyph.tscn")
+const OBJ_MAP = preload("res://objects/geometry/Map.tscn")
 
 const COLOUR_FLOOR = Color("000000")
 const COLOUR_WALL = Color("595652")
@@ -30,6 +31,7 @@ const COLOUR_LEVEL_EXIT = Color("37946e")
 const COLOUR_WEAK_WALL = Color("696a6a")
 const COLOUR_CHEST_WITH_BOMBS = Color("323c39")
 const COLOUR_GLYPH = Color("9badb7")
+const COLOUR_MAP = Color("d9a066")
 
 func place_object(type, x : int, y : int, destination : Spatial) -> Spatial:
 	var o = type.instance()
@@ -91,6 +93,9 @@ func setup_level(map : Image, destination : Spatial) -> void:
 					chest.contents = Chest.CONTENTS.BOMBS
 				COLOUR_GLYPH:
 					place_object(OBJ_GLYPH, x, y, destination)
+					place_object(OBJ_FLOOR, x, y, destination)
+				COLOUR_MAP:
+					place_object(OBJ_MAP, x, y, destination)
 					place_object(OBJ_FLOOR, x, y, destination)
 					
 	for door in get_tree().get_nodes_in_group("door"):

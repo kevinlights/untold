@@ -23,5 +23,7 @@ func interact() -> void:
 	open = true
 	sprite.frame = 1
 	# Give the player the contents
-	if contents == CONTENTS.BOMBS:
-		GameSession.bombs += 3
+	if contents == CONTENTS.SCORE:
+		GameSession.treasure_collected += 1
+	elif contents == CONTENTS.BOMBS:
+		GameSession.bombs += 2
