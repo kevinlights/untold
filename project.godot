@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Spatial",
+"class": "Chest",
+"language": "GDScript",
+"path": "res://objects/geometry/Chest.gd"
+}, {
+"base": "Spatial",
 "class": "Player",
 "language": "GDScript",
 "path": "res://objects/Player.gd"
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://objects/geometry/Water.gd"
 } ]
 _global_script_class_icons={
+"Chest": "",
 "Player": "",
 "Water": ""
 }
@@ -38,6 +44,14 @@ GameSession="*res://scripts/GameSession.gd"
 
 window/size/width=1280
 window/size/height=720
+
+[input]
+
+bomb={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":66,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [rendering]
 

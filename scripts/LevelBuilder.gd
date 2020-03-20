@@ -11,6 +11,8 @@ const OBJ_MONSTER = preload("res://objects/geometry/Monster.tscn")
 const OBJ_LOCKED_DOOR = preload("res://objects/geometry/LockedDoor.tscn")
 const OBJ_KEY = preload("res://objects/geometry/Key.tscn")
 const OBJ_LEVEL_EXIT = preload("res://objects/geometry/LevelExit.tscn")
+const OBJ_WEAK_WALL = preload("res://objects/geometry/WallWeak.tscn")
+const OBJ_GLYPH = preload("res://objects/geometry/Glyph.tscn")
 
 const COLOUR_FLOOR = Color("000000")
 const COLOUR_WALL = Color("595652")
@@ -25,8 +27,11 @@ const COLOUR_DOOR = Color("8f563b")
 const COLOUR_LOCKED_DOOR = Color("663931")
 const COLOUR_KEY = Color("eec39a")
 const COLOUR_LEVEL_EXIT = Color("37946e")
+const COLOUR_WEAK_WALL = Color("696a6a")
+const COLOUR_CHEST_WITH_BOMBS = Color("323c39")
+const COLOUR_GLYPH = Color("9badb7")
 
-func place_object(type, x : int, y : int, destination : Spatial) -> void:
+func place_object(type, x : int, y : int, destination : Spatial) -> Spatial:
 	var o = type.instance()
 	o.translation.x = x
 	o.translation.z = y
@@ -35,6 +40,7 @@ func place_object(type, x : int, y : int, destination : Spatial) -> void:
 	destination.add_child(o)
 	if o is Player:
 		destination.player = o
+	return o
 
 func setup_level(map : Image, destination : Spatial) -> void:
 	for x in map.get_size().x:
@@ -58,8 +64,9 @@ func setup_level(map : Image, destination : Spatial) -> void:
 					place_object(OBJ_TORCH, x, y, destination)
 					place_object(OBJ_FLOOR, x, y, destination)
 				COLOUR_TREASURE:
-					place_object(OBJ_CHEST, x, y, destination)
 					place_object(OBJ_FLOOR, x, y, destination)
+					var chest : Spatial = place_object(OBJ_CHEST, x, y, destination)
+					chest.contents = Chest.CONTENTS.SCORE
 				COLOUR_MONSTER:
 					#place_object(OBJ_MONSTER, x, y, destination)
 					place_object(OBJ_FLOOR, x, y, destination)
@@ -74,6 +81,16 @@ func setup_level(map : Image, destination : Spatial) -> void:
 					place_object(OBJ_FLOOR, x, y, destination)
 				COLOUR_LEVEL_EXIT:
 					place_object(OBJ_LEVEL_EXIT, x, y, destination)
+					place_object(OBJ_FLOOR, x, y, destination)
+				COLOUR_WEAK_WALL:
+					place_object(OBJ_WEAK_WALL, x, y, destination)
+					place_object(OBJ_FLOOR, x, y, destination)
+				COLOUR_CHEST_WITH_BOMBS:
+					place_object(OBJ_FLOOR, x, y, destination)
+					var chest : Spatial = place_object(OBJ_CHEST, x, y, destination)
+					chest.contents = Chest.CONTENTS.BOMBS
+				COLOUR_GLYPH:
+					place_object(OBJ_GLYPH, x, y, destination)
 					place_object(OBJ_FLOOR, x, y, destination)
 					
 	for door in get_tree().get_nodes_in_group("door"):

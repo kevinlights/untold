@@ -2,6 +2,8 @@ extends "res://objects/geometry/BoardObject.gd"
 
 class_name Player
 
+const OBJ_BOMB = preload("res://objects/Bomb.tscn")
+
 onready var camera = $Camera
 onready var audio_step = $Audio_Step
 onready var audio_swim = $Audio_Swim
@@ -57,6 +59,18 @@ func try_to_interact(position : Vector2) -> void:
 			object.interact()
 			finish_turn()
 
+func plant_bomb() -> void:
+	if GameSession.bombs <= 0:
+		return
+	var bomb : Spatial = OBJ_BOMB.instance()
+	bomb.translation = translation - (Vector3(sin(deg2rad(facing)), 0.0, cos(deg2rad(facing))) * 0.25)
+	bomb.board_position = board_position
+	bomb.level = level
+	level.add_child(bomb)
+	bomb.light()
+	GameSession.bombs -= 1
+	finish_turn()
+
 func _input(event : InputEvent) -> void:
 	if event.is_action_pressed("ui_up"):
 		move(board_position - Vector2(sin(deg2rad(facing)), cos(deg2rad(facing))))
@@ -68,6 +82,8 @@ func _input(event : InputEvent) -> void:
 		facing -= 90.0
 	if event.is_action_pressed("ui_select"):
 		try_to_interact(board_position - Vector2(sin(deg2rad(facing)), cos(deg2rad(facing))))
+	if event.is_action_pressed("bomb"):
+		plant_bomb()
 
 func _process(delta : float) -> void:
 	rotation_degrees.y = lerp(rotation_degrees.y, facing, delta * 20.0)

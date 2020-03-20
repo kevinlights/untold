@@ -1,5 +1,7 @@
 extends Spatial
 
+const OBJ_WALL_BROKEN = preload("res://objects/geometry/WallBroken.tscn")
+
 const MAX_ROUTE_DEPTH : int = 32
 
 var player : Spatial
@@ -74,3 +76,14 @@ func player_turn_finished() -> void:
 func level_clear() -> void:
 	GameSession.level += 1
 	get_tree().change_scene("res://scenes/Game.tscn")
+
+func make_explosion(position : Vector2) -> void:
+	for weak_wall in get_tree().get_nodes_in_group("wall_weak"):
+		for offset in [Vector2.ZERO, Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]:
+			if weak_wall.board_position == position + offset:
+				weak_wall.destroy()
+				var debris : Spatial = OBJ_WALL_BROKEN.instance()
+				debris.board_position = weak_wall.board_position
+				debris.translation = weak_wall.translation
+				add_child(debris)
+				debris.do_break()

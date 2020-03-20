@@ -7,4 +7,7 @@ func is_sight_blocker() -> bool:
 	return true
 
 func is_destructible() -> bool:
-	return false
+	return true
+
+func destroy() -> void:
+	queue_free()

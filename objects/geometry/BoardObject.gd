@@ -12,7 +12,13 @@ func is_sight_blocker() -> bool:
 func is_interactive() -> bool:
 	return false
 
+func is_destructible() -> bool:
+	return false
+
 func interact() -> void:
+	pass
+
+func destroy() -> void:
 	pass
 
 func tick() -> void:

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://materials/brick_weak.tres" type="Material" id=1]
+[ext_resource path="res://objects/geometry/WallWeak.gd" type="Script" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 1, 1, 1 )
+
+[node name="WeakWall" type="MeshInstance" groups=[
+"board_object",
+"wall_weak",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
+script = ExtResource( 2 )
