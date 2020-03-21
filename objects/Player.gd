@@ -84,6 +84,10 @@ func _input(event : InputEvent) -> void:
 		try_to_interact(board_position - Vector2(sin(deg2rad(facing)), cos(deg2rad(facing))))
 	if event.is_action_pressed("bomb"):
 		plant_bomb()
+	if event.is_action_pressed("toggle_map"):
+		if GameSession.got_map:
+			var ui = get_tree().get_nodes_in_group("ui")[0]
+			ui.map.visible = !ui.map.visible
 
 func _process(delta : float) -> void:
 	rotation_degrees.y = lerp(rotation_degrees.y, facing, delta * 20.0)

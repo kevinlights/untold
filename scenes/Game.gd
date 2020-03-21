@@ -1,6 +1,7 @@
 extends Spatial
 
-onready var geometry = $Level
+onready var level = $Level
+onready var ui = $UI
 
 var levels : Array = [
 	"res://maps/test1.png",
@@ -9,4 +10,7 @@ var levels : Array = [
 ]
 
 func _ready():
-	LevelBuilder.load_map(levels[GameSession.level], geometry)
+	GameSession.enter_level()
+	LevelBuilder.load_map(levels[GameSession.level], level)
+	ui.init_map(levels[GameSession.level])
+	ui.update_ui()

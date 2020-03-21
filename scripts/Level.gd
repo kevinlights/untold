@@ -69,8 +69,20 @@ func get_route(from : Vector2, to : Vector2):
 		pending.remove(pending.find(shortest_route))
 		checked.append(shortest_route.destination)
 
+func fill_map(position : Vector2) -> void:
+	GameSession.set_map_explored(position)
+	for offset in [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT,
+					Vector2(-1, -1), Vector2(-1, 1), Vector2(1, -1), Vector2(1, 1)]:
+		if not is_space_sight_blocked(position + offset):
+			GameSession.set_map_explored(position + offset)
+			# And if we can see _this_ tile, let's go further
+			if not is_space_sight_blocked(position + offset + offset):
+				GameSession.set_map_explored(position + offset + offset)
+
 func player_turn_finished() -> void:
 	get_tree().call_group("board_object", "tick")
+	get_tree().call_group("ui", "update_ui")
+	fill_map(get_player().board_position)
 	player.can_move = true
 
 func level_clear() -> void:
