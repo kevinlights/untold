@@ -97,6 +97,7 @@ func is_level_finished() -> bool:
 	return false
 
 func do_level_outro() -> void:
+	get_parent().fade_out_ambience()
 	get_tree().call_group("ui", "fade_out")
 	yield(get_tree().create_timer(2.0), "timeout")
 	get_tree().change_scene("res://scenes/LevelClear.tscn")

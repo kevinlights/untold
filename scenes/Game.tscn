@@ -11,3 +11,8 @@ script = ExtResource( 3 )
 
 [node name="Level" type="Spatial" parent="."]
 script = ExtResource( 4 )
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+bus = "Ambience"
+
+[node name="Tween" type="Tween" parent="."]
