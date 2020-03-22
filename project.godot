@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "Player",
 "language": "GDScript",
-"path": "res://objects/Player.gd"
+"path": "res://objects/geometry/Player.gd"
 }, {
 "base": "Spatial",
 "class": "Water",
@@ -33,6 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Untold"
+run/main_scene="res://scenes/Game.tscn"
 config/icon="res://icon.png"
 
 [autoload]

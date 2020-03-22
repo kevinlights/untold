@@ -23,3 +23,6 @@ func destroy() -> void:
 
 func tick() -> void:
 	pass
+
+func update_angle(camera_angle : float) -> void:
+	pass

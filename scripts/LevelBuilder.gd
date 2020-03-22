@@ -70,7 +70,7 @@ func setup_level(map : Image, destination : Spatial) -> void:
 					var chest : Spatial = place_object(OBJ_CHEST, x, y, destination)
 					chest.contents = Chest.CONTENTS.SCORE
 				COLOUR_MONSTER:
-					#place_object(OBJ_MONSTER, x, y, destination)
+					place_object(OBJ_MONSTER, x, y, destination)
 					place_object(OBJ_FLOOR, x, y, destination)
 				COLOUR_DOOR:
 					place_object(OBJ_DOOR, x, y, destination)

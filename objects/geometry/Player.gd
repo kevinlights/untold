@@ -78,8 +78,10 @@ func _input(event : InputEvent) -> void:
 		move(board_position + Vector2(sin(deg2rad(facing)), cos(deg2rad(facing))))
 	if event.is_action_pressed("ui_left"):
 		facing += 90.0
+		get_tree().call_group("board_object", "update_angle", facing)
 	if event.is_action_pressed("ui_right"):
 		facing -= 90.0
+		get_tree().call_group("board_object", "update_angle", facing)
 	if event.is_action_pressed("ui_select"):
 		try_to_interact(board_position - Vector2(sin(deg2rad(facing)), cos(deg2rad(facing))))
 	if event.is_action_pressed("bomb"):
