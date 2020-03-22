@@ -18,6 +18,13 @@ const LEVELS : Array = [
 	"res://maps/level4.png"
 ]
 
+const PALETTES : Array = [
+	preload("res://textures/palettes/slso8.png"),
+	preload("res://textures/palettes/title.png"),
+	preload("res://textures/palettes/hot.png"),
+	preload("res://textures/palettes/cold_blue.png")
+]
+
 func fade_out_ambience() -> void:
 	tween.interpolate_property(ambience, "volume_db", ambience.volume_db, -80, 3.0)
 	tween.start()
@@ -33,6 +40,7 @@ func _ready():
 		yield(get_tree().create_timer(0.1), "timeout")
 		ambience.play()
 		yield(get_tree().create_timer(1.0), "timeout")
+	ui.set_palette(PALETTES[GameSession.level])
 	ui.update_ui()
 	ui.fade_in()
 	level.start_level()

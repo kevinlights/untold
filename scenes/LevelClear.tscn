@@ -7,10 +7,12 @@
 [ext_resource path="res://objects/PressStart.tscn" type="PackedScene" id=5]
 [ext_resource path="res://textures/level_clear.png" type="Texture" id=6]
 [ext_resource path="res://shader.shader" type="Shader" id=7]
-[ext_resource path="res://textures/slso8.png" type="Texture" id=8]
+[ext_resource path="res://textures/palettes/slso8.png" type="Texture" id=8]
 [ext_resource path="res://scenes/LevelClear.gd" type="Script" id=10]
 [ext_resource path="res://textures/ui/level_pipe.png" type="Texture" id=11]
 [ext_resource path="res://textures/ui/level_circle.png" type="Texture" id=12]
+
+
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 7 )

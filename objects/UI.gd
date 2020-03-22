@@ -14,6 +14,7 @@ onready var key_map = $Keys/Map
 
 onready var map = $Map
 onready var blackout = $Blackout
+onready var shader = $Shader
 
 onready var tween = $Tween
 
@@ -25,6 +26,8 @@ func update_ui() -> void:
 	status_bombs.visible = GameSession.bombs > 0
 	if GameSession.level < 3:
 		status_secrets.visible = GameSession.glyphs_collected[GameSession.level]
+	else:
+		status_secrets.visible = false
 	key_interact.visible = get_parent().level.get_player().can_interact()
 	key_bomb.visible = GameSession.bombs > 0
 	key_map.visible = GameSession.got_map
@@ -34,6 +37,9 @@ func update_ui() -> void:
 
 func init_map(path : String) -> void:
 	map.load_map(path)
+
+func set_palette(palette) -> void:
+	shader.texture = palette
 
 func fade_in() -> void:
 	tween.interpolate_property(blackout, "color", Color.black, Color(0.0, 0.0, 0.0, 0.0), 2.0)
