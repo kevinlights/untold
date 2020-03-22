@@ -30,7 +30,7 @@ func new_game() -> void:
 	level = 0
 	keys = 0
 	bombs = 0
-	glyphs_collected = [false, false, false, false]
+	glyphs_collected = [false, false, false]
 
 func enter_level() -> void:
 	steps_taken = 0

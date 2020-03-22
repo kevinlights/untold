@@ -6,6 +6,8 @@ const MAX_ROUTE_DEPTH : int = 32
 
 var player : Spatial
 
+var override_game : bool = false
+
 func get_player() -> Spatial:
 	return player
 

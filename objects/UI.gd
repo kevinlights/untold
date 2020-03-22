@@ -39,3 +39,7 @@ func fade_in() -> void:
 func fade_out() -> void:
 	tween.interpolate_property(blackout, "color", Color(0.0, 0.0, 0.0, 0.0), Color.black, 2.0)
 	tween.start()
+
+func white_out() -> void:
+	tween.interpolate_property(blackout, "color", Color(1.0, 1.0, 1.0, 0.0), Color.white, 5.0)
+	tween.start()

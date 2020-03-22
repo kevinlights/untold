@@ -6,7 +6,8 @@ onready var ui = $UI
 var levels : Array = [
 	"res://maps/test1.png",
 	"res://maps/test2.png",
-	"res://maps/test3.png"
+	"res://maps/test3.png",
+	"res://maps/test4.png"
 ]
 
 func _ready():

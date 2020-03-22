@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/statue_open.ogg-205519392878bb6072e7a07ad83cc092.oggstr"
+
+[deps]
+
+source_file="res://audio/statue_open.ogg"
+dest_files=[ "res://.import/statue_open.ogg-205519392878bb6072e7a07ad83cc092.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
