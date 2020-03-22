@@ -1,5 +1,6 @@
 extends "res://objects/geometry/BoardObject.gd"
 
+onready var sprite = $Sprite3D
 onready var light = $OmniLight
 
 func is_solid() -> bool:

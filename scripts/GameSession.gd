@@ -10,6 +10,7 @@ var bombs : int
 var got_map : bool
 var glyphs_collected : Array
 var map_filled : BitMap
+onready var use_shader : bool = true
 
 func clear_map() -> void:
 	map_filled = BitMap.new()
