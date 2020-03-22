@@ -34,6 +34,9 @@ _global_script_class_icons={
 
 config/name="Untold"
 run/main_scene="res://scenes/TitleScreen.tscn"
+run/disable_stdout=true
+run/disable_stderr=true
+boot_splash/image="res://promo/loading.png"
 config/icon="res://icon.png"
 
 [autoload]
