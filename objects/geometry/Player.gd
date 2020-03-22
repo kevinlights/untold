@@ -21,6 +21,9 @@ var facing : float
 var underwater : bool
 var can_move : bool
 
+func get_facing_vector() -> Vector2:
+	return -Vector2(sin(deg2rad(facing)), cos(deg2rad(facing)))
+
 func finish_turn() -> void:
 	can_move = false
 	level.player_turn_finished()
@@ -52,6 +55,13 @@ func move(destination : Vector2) -> void:
 		finish_turn()
 		GameSession.steps_taken += 1
 
+func can_interact() -> bool:
+	var position : Vector2 = board_position + get_facing_vector()
+	for object in get_tree().get_nodes_in_group("board_object"):
+		if object.is_interactive() and object.board_position == position:
+			return true
+	return false
+
 func try_to_interact(position : Vector2) -> void:
 	for object in get_tree().get_nodes_in_group("board_object"):
 		if object.is_interactive() and object.board_position == position:
@@ -62,8 +72,14 @@ func plant_bomb() -> void:
 	if GameSession.bombs <= 0:
 		return
 	var bomb : Spatial = OBJ_BOMB.instance()
-	bomb.translation = translation - (Vector3(sin(deg2rad(facing)), 0.0, cos(deg2rad(facing))) * 0.25)
-	bomb.board_position = board_position
+	var candidate_position : Vector2 = board_position
+	if level.is_space_free(board_position + get_facing_vector()):
+		candidate_position += get_facing_vector()
+	bomb.board_position = candidate_position
+	bomb.translation = Vector3(
+		candidate_position.x + (get_facing_vector().x / 3.0), 0.0,
+		candidate_position.y + (get_facing_vector().y / 3.0)
+	)
 	bomb.level = level
 	level.add_child(bomb)
 	bomb.light()
@@ -81,17 +97,19 @@ func _input(event : InputEvent) -> void:
 	if not can_move:
 		return
 	if event.is_action_pressed("ui_up"):
-		move(board_position - Vector2(sin(deg2rad(facing)), cos(deg2rad(facing))))
+		move(board_position + get_facing_vector())
 	if event.is_action_pressed("ui_down"):
-		move(board_position + Vector2(sin(deg2rad(facing)), cos(deg2rad(facing))))
+		move(board_position - get_facing_vector())
 	if event.is_action_pressed("ui_left"):
 		facing += 90.0
 		get_tree().call_group("board_object", "update_angle", facing)
+		get_tree().call_group("ui", "update_ui")
 	if event.is_action_pressed("ui_right"):
 		facing -= 90.0
 		get_tree().call_group("board_object", "update_angle", facing)
+		get_tree().call_group("ui", "update_ui")
 	if event.is_action_pressed("ui_select"):
-		try_to_interact(board_position - Vector2(sin(deg2rad(facing)), cos(deg2rad(facing))))
+		try_to_interact(board_position + get_facing_vector())
 	if event.is_action_pressed("bomb"):
 		plant_bomb()
 	if event.is_action_pressed("toggle_map"):
@@ -109,3 +127,4 @@ func _process(delta : float) -> void:
 func _ready() -> void:
 	facing = 0.0
 	board_position = Vector2(translation.x, translation.z)
+	get_tree().call_group("board_object", "update_angle", facing)

@@ -12,7 +12,7 @@ func light() -> void:
 	tween.interpolate_property(sprite, "translation", Vector3(0, 0.5, 0), Vector3.ZERO, 0.5, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 	tween.start()
 	audio_wick.play()
-	turns_to_explosion = 3
+	turns_to_explosion = 4
 
 func explode() -> void:
 	level.make_explosion(board_position)
