@@ -18,6 +18,8 @@ func tick() -> void:
 		collected = true
 		hide()
 		GameSession.got_map = true
+		var ui = get_tree().get_nodes_in_group("ui")[0]
+		ui.map.visible = !ui.map.visible
 
 func _process(delta : float) -> void:
 	var time : float = OS.get_ticks_msec() / 1000.0
