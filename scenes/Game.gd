@@ -12,10 +12,10 @@ const AMBIENCE_TRACKS : Array = [
 ]
 
 const LEVELS : Array = [
-	"res://maps/test1.png",
-	"res://maps/test2.png",
-	"res://maps/test3.png",
-	"res://maps/test4.png"
+	"res://maps/level1.png",
+	"res://maps/level2.png",
+	"res://maps/level3.png",
+	"res://maps/level4.png"
 ]
 
 func fade_out_ambience() -> void:
