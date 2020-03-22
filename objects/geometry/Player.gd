@@ -20,7 +20,6 @@ onready var step_audio : Array = [
 var facing : float
 var underwater : bool
 var can_move : bool
-var steps_taken : int
 
 func finish_turn() -> void:
 	can_move = false
@@ -46,12 +45,12 @@ func move(destination : Vector2) -> void:
 			moved = true
 		elif level.is_space_free(destination):
 			board_position = destination
-			audio_step.stream = step_audio[steps_taken % step_audio.size()]
+			audio_step.stream = step_audio[GameSession.steps_taken % step_audio.size()]
 			audio_step.play()
 			moved = true
 	if moved:
 		finish_turn()
-		steps_taken += 1
+		GameSession.steps_taken += 1
 
 func try_to_interact(position : Vector2) -> void:
 	for object in get_tree().get_nodes_in_group("board_object"):
@@ -72,6 +71,15 @@ func plant_bomb() -> void:
 	finish_turn()
 
 func _input(event : InputEvent) -> void:
+#	if event is InputEventMouseMotion:
+#		camera.rotation_degrees.x -= event.relative.y
+#		camera.rotation_degrees.y -= event.relative.x
+#	if event.is_action_pressed("ui_page_up"):
+#		translation.y += 0.1
+#	if event.is_action_pressed("ui_page_down"):
+#		translation.y -= 0.1
+	if not can_move:
+		return
 	if event.is_action_pressed("ui_up"):
 		move(board_position - Vector2(sin(deg2rad(facing)), cos(deg2rad(facing))))
 	if event.is_action_pressed("ui_down"):
@@ -101,4 +109,3 @@ func _process(delta : float) -> void:
 func _ready() -> void:
 	facing = 0.0
 	board_position = Vector2(translation.x, translation.z)
-	steps_taken = 0

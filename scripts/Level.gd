@@ -81,13 +81,23 @@ func fill_map(position : Vector2) -> void:
 
 func player_turn_finished() -> void:
 	get_tree().call_group("board_object", "tick")
-	get_tree().call_group("ui", "update_ui")
-	fill_map(get_player().board_position)
-	player.can_move = true
+	if not is_level_finished():
+		get_tree().call_group("ui", "update_ui")
+		fill_map(get_player().board_position)
+		player.can_move = true
+	else:
+		do_level_outro()
 
-func level_clear() -> void:
-	GameSession.level += 1
-	get_tree().change_scene("res://scenes/Game.tscn")
+func is_level_finished() -> bool:
+	for exit in get_tree().get_nodes_in_group("level_exit"):
+		if exit.board_position == get_player().board_position:
+			return true
+	return false
+
+func do_level_outro() -> void:
+	get_tree().call_group("ui", "fade_out")
+	yield(get_tree().create_timer(2.0), "timeout")
+	get_tree().change_scene("res://scenes/LevelClear.tscn")
 
 func make_explosion(position : Vector2) -> void:
 	for weak_wall in get_tree().get_nodes_in_group("wall_weak"):
@@ -99,3 +109,6 @@ func make_explosion(position : Vector2) -> void:
 				debris.translation = weak_wall.translation
 				add_child(debris)
 				debris.do_break()
+
+func start_level() -> void:
+	get_player().can_move = true

@@ -14,3 +14,5 @@ func _ready():
 	LevelBuilder.load_map(levels[GameSession.level], level)
 	ui.init_map(levels[GameSession.level])
 	ui.update_ui()
+	ui.fade_in()
+	level.start_level()

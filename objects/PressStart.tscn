@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://textures/ui/key_return.png" type="Texture" id=1]
+[ext_resource path="res://textures/ui/finger.png" type="Texture" id=2]
+[ext_resource path="res://objects/PressStart.gd" type="Script" id=3]
+
+[node name="PressStart" type="HBoxContainer"]
+margin_left = 606.0
+margin_top = 164.0
+margin_right = 674.0
+margin_bottom = 196.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon_Hand" type="TextureRect" parent="."]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon_Return" type="TextureRect" parent="."]
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -6,7 +6,6 @@ onready var audio_start = $Audio_Start
 onready var demo = $TitleDemo
 onready var tween = $Tween
 onready var timer_reset_demo = $Timer_ResetDemo
-onready var icon_hand = $CanvasLayer/Center/PressStart/Icon_Hand
 
 var fading_out : bool = false
 
@@ -23,21 +22,18 @@ func _input(event : InputEvent) -> void:
 		GameSession.new_game()
 		get_tree().change_scene("res://scenes/Game.tscn")
 
-func _process(delta : float) -> void:
-	var time : float = OS.get_ticks_msec() / 1000.0
-	icon_hand.rect_position.y = (sin(time * 4.0) * 4.0)
-
 func _on_Timer_ResetDemo_timeout() -> void:
-	tween.interpolate_property(blackout, "color", Color(0.25, 0.25, 0.25, 0.5), Color.black, 2.0)
+	tween.interpolate_property(blackout, "color", Color(0.0, 0.0, 0.0, 0.0), Color.black, 2.0)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	demo.reset_camera()
-	tween.interpolate_property(blackout, "color", Color.black, Color(0.25, 0.25, 0.25, 0.5), 2.0)
-	tween.start()
+	if not fading_out:
+		tween.interpolate_property(blackout, "color", Color.black, Color(0.0, 0.0, 0.0, 0.0), 2.0)
+		tween.start()
 
 func _ready() -> void:
 	yield(get_tree().create_timer(1.0), "timeout")
 	music.play()
-	tween.interpolate_property(blackout, "color", Color.black, Color(0.25, 0.25, 0.25, 0.5), 0.5)
+	tween.interpolate_property(blackout, "color", Color.black, Color(0.0, 0.0, 0.0, 0.0), 0.5)
 	tween.start()
 	timer_reset_demo.start()

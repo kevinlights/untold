@@ -4,6 +4,8 @@ const MAP_SIZE : Vector2 = Vector2(32, 32)
 
 var health : int
 var level : int
+var steps_taken : int
+var treasure_in_level : int
 var treasure_collected : int
 var keys : int
 var bombs : int
@@ -26,14 +28,13 @@ func is_map_explored(position : Vector2) -> bool:
 func new_game() -> void:
 	health = 3
 	level = 0
-	treasure_collected = 0
 	keys = 0
 	bombs = 0
-	got_map = false
 	glyphs_collected = [false, false, false, false]
-	clear_map()
 
 func enter_level() -> void:
+	steps_taken = 0
+	treasure_in_level = 0
 	treasure_collected = 0
 	got_map = false
 	clear_map()

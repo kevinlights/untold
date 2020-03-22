@@ -69,6 +69,7 @@ func setup_level(map : Image, destination : Spatial) -> void:
 					place_object(OBJ_FLOOR, x, y, destination)
 					var chest : Spatial = place_object(OBJ_CHEST, x, y, destination)
 					chest.contents = Chest.CONTENTS.SCORE
+					GameSession.treasure_in_level += 1
 				COLOUR_MONSTER:
 					place_object(OBJ_MONSTER, x, y, destination)
 					place_object(OBJ_FLOOR, x, y, destination)
@@ -90,6 +91,7 @@ func setup_level(map : Image, destination : Spatial) -> void:
 					place_object(OBJ_FLOOR, x, y, destination)
 					var chest : Spatial = place_object(OBJ_CHEST, x, y, destination)
 					chest.contents = Chest.CONTENTS.BOMBS
+					GameSession.treasure_in_level += 1
 				COLOUR_GLYPH:
 					place_object(OBJ_GLYPH, x, y, destination)
 					place_object(OBJ_FLOOR, x, y, destination)

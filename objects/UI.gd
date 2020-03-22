@@ -12,6 +12,9 @@ onready var key_bomb = $Keys/Bomb
 onready var key_map = $Keys/Map
 
 onready var map = $Map
+onready var blackout = $Blackout
+
+onready var tween = $Tween
 
 func update_ui() -> void:
 	health_value.text = str(GameSession.health)
@@ -28,3 +31,11 @@ func update_ui() -> void:
 
 func init_map(path : String) -> void:
 	map.load_map(path)
+
+func fade_in() -> void:
+	tween.interpolate_property(blackout, "color", Color.black, Color(0.0, 0.0, 0.0, 0.0), 2.0)
+	tween.start()
+
+func fade_out() -> void:
+	tween.interpolate_property(blackout, "color", Color(0.0, 0.0, 0.0, 0.0), Color.black, 2.0)
+	tween.start()

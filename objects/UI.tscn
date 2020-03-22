@@ -32,6 +32,7 @@ __meta__ = {
 }
 
 [node name="Health" type="HBoxContainer" parent="StatusBar"]
+visible = false
 margin_left = 477.0
 margin_right = 533.0
 margin_bottom = 32.0
@@ -63,8 +64,8 @@ __meta__ = {
 }
 
 [node name="Keys" type="HBoxContainer" parent="StatusBar"]
-margin_left = 565.0
-margin_right = 623.0
+margin_left = 521.0
+margin_right = 579.0
 margin_bottom = 32.0
 custom_constants/separation = 8
 __meta__ = {
@@ -94,8 +95,8 @@ __meta__ = {
 }
 
 [node name="Bombs" type="HBoxContainer" parent="StatusBar"]
-margin_left = 655.0
-margin_right = 713.0
+margin_left = 611.0
+margin_right = 669.0
 margin_bottom = 32.0
 custom_constants/separation = 8
 __meta__ = {
@@ -125,8 +126,8 @@ __meta__ = {
 }
 
 [node name="Treasure" type="HBoxContainer" parent="StatusBar"]
-margin_left = 745.0
-margin_right = 803.0
+margin_left = 701.0
+margin_right = 759.0
 margin_bottom = 32.0
 custom_constants/separation = 8
 __meta__ = {
@@ -238,3 +239,13 @@ margin_top = -280.0
 margin_right = 144.0
 margin_bottom = -152.0
 rect_scale = Vector2( 2, 2 )
+
+[node name="Blackout" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
