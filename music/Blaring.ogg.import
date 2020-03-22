@@ -12,4 +12,4 @@ dest_files=[ "res://.import/Blaring.ogg-2605bee28e44e2c4f5a2cab34bcbe25a.oggstr"
 [params]
 
 loop=true
-loop_offset=0
+loop_offset=24.0

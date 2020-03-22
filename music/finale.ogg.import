@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/finale.ogg-7e12992ee0f6f3147e30225f9767c988.oggstr"
+
+[deps]
+
+source_file="res://music/finale.ogg"
+dest_files=[ "res://.import/finale.ogg-7e12992ee0f6f3147e30225f9767c988.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=24.0

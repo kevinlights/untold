@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://objects/geometry/Statue.gd" type="Script" id=1]
 [ext_resource path="res://materials/concrete.tres" type="Material" id=2]
 [ext_resource path="res://models/Glow.material" type="Material" id=3]
 [ext_resource path="res://audio/statue_open.ogg" type="AudioStream" id=4]
+[ext_resource path="res://music/finale.ogg" type="AudioStream" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube.001"
@@ -119,3 +120,9 @@ shadow_enabled = true
 stream = ExtResource( 4 )
 unit_size = 3.0
 bus = "SFX"
+
+[node name="Audio_Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Music"
+
+[node name="Tween" type="Tween" parent="."]
