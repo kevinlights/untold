@@ -1,5 +1,11 @@
 extends Control
 
+const TRACKS = [
+	preload("res://music/level_clear1.ogg"),
+	preload("res://music/level_clear2.ogg"),
+	preload("res://music/level_clear3.ogg")
+]
+
 onready var blackout = $Blackout
 onready var audio_music = $Audio_Music
 onready var tween = $Tween
@@ -35,4 +41,5 @@ func _ready():
 	tween.interpolate_property(blackout, "color", Color.black, Color(0.0, 0.0, 0.0, 0.0), 1.0)
 	tween.interpolate_property(level_indicator, "rect_position", level_indicator.rect_position, level_indicator.rect_position + Vector2(64, 0), 2.0, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT, 2.5)
 	tween.start()
+	audio_music.stream = TRACKS[GameSession.level]
 	audio_music.play()
