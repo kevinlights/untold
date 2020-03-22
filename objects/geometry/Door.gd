@@ -35,6 +35,8 @@ func open() -> void:
 	turns_to_close = 4
 
 func close() -> void:
+	# Don't close if the player is standing underneath
+	if level.get_player().board_position == board_position: return
 	tween.interpolate_property(mesh, "translation", Vector3(0.0, 1.35, 0.0), Vector3(0.0, 0.5, 0.0), 0.5, Tween.TRANS_CIRC, Tween.EASE_OUT)
 	tween.start()
 	audio_close.play()
