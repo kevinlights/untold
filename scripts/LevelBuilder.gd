@@ -83,7 +83,6 @@ func setup_level(map : Image, destination : Spatial) -> void:
 					place_object(OBJ_FLOOR, x, y, destination)
 				COLOUR_LEVEL_EXIT:
 					place_object(OBJ_LEVEL_EXIT, x, y, destination)
-					place_object(OBJ_FLOOR, x, y, destination)
 				COLOUR_WEAK_WALL:
 					place_object(OBJ_WEAK_WALL, x, y, destination)
 					place_object(OBJ_FLOOR, x, y, destination)
