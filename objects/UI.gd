@@ -35,8 +35,8 @@ func update_ui() -> void:
 	map.player_position = get_parent().level.get_player().board_position # the jankiest hack. ew.
 	map.update()
 
-func init_map(path : String) -> void:
-	map.load_map(path)
+func set_map(image : Image) -> void:
+	map.set_map(image)
 
 func set_palette(palette) -> void:
 	shader.texture = palette

@@ -43,6 +43,7 @@ config/icon="res://icon.png"
 
 LevelBuilder="*res://scripts/LevelBuilder.gd"
 GameSession="*res://scripts/GameSession.gd"
+GameContent="*res://scripts/GameContent.gd"
 
 [display]
 

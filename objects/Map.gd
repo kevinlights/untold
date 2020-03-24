@@ -30,6 +30,5 @@ func _draw() -> void:
 				draw_texture_rect_region(TILESET, Rect2(position * TILE_SIZE, TILE_SIZE), Rect2(t * TILE_SIZE, TILE_SIZE))
 	draw_texture_rect_region(TILESET, Rect2(player_position * TILE_SIZE, TILE_SIZE), Rect2(Vector2(0, 1) * TILE_SIZE, TILE_SIZE))
 
-func load_map(path : String) -> void:
-	map = load(path).get_data()
-	map.lock()
+func set_map(map : Image) -> void:
+	self.map = map

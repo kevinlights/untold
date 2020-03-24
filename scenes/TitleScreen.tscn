@@ -98,7 +98,7 @@ custom_colors/font_color = Color( 0.627451, 0.627451, 0.627451, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
-text = "v1.0.0"
+text = "v1.0.1"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false

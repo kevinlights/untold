@@ -17,6 +17,8 @@ const OBJ_GLYPH = preload("res://objects/geometry/Glyph.tscn")
 const OBJ_MAP = preload("res://objects/geometry/Map.tscn")
 const OBJ_PEDESTAL = preload("res://objects/geometry/Pedestal.tscn")
 const OBJ_STATUE = preload("res://objects/geometry/Statue.tscn")
+const OBJ_INVISIBLE_WALL = preload("res://objects/geometry/InvisibleWall.tscn")
+const OBJ_INVISIBLE_WALL_HIGH_CEILING = preload("res://objects/geometry/InvisibleWallHighCeiling.tscn")
 
 const COLOUR_FLOOR = Color("000000")
 const COLOUR_FLOOR_HIGH_CEILING = Color("45283c")
@@ -37,6 +39,8 @@ const COLOUR_GLYPH = Color("9badb7")
 const COLOUR_MAP = Color("d9a066")
 const COLOUR_PEDESTAL = Color("cbdbfc")
 const COLOUR_STATUE = Color("ffffff")
+const COLOUR_INVISIBLE_WALL = Color("76428a")
+const COLOUR_INVISIBLE_WALL_HIGH_CEILING = Color("d77bba")
 
 func place_object(type, x : int, y : int, destination : Spatial) -> Spatial:
 	var o = type.instance()
@@ -114,11 +118,13 @@ func setup_level(map : Image, destination : Spatial) -> void:
 				COLOUR_STATUE:
 					place_object(OBJ_STATUE, x, y, destination)
 					place_object(OBJ_FLOOR_HIGH_CEILING, x, y, destination)
+				COLOUR_INVISIBLE_WALL:
+					place_object(OBJ_INVISIBLE_WALL, x, y, destination)
+				COLOUR_INVISIBLE_WALL_HIGH_CEILING:
+					place_object(OBJ_INVISIBLE_WALL_HIGH_CEILING, x, y, destination)
 					
 	for door in get_tree().get_nodes_in_group("door"):
 		door.set_orientation()
 
-func load_map(path : String, destination : Spatial) -> void:
-	var map : Image = load(path).get_data()
-	map.lock()
+func load_map(map : Image, destination : Spatial) -> void:
 	setup_level(map, destination)

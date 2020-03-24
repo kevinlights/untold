@@ -19,7 +19,9 @@ func _process(delta : float) -> void:
 
 func _ready():
 	rand_seed(15)
-	LevelBuilder.load_map("res://maps/demo.png", self)
+	var map : Image = load("res://maps/demo.png").get_data()
+	map.lock()
+	LevelBuilder.load_map(map, self)
 	# janky fix, no regrets
 	for monster in get_tree().get_nodes_in_group("monster"):
 		monster.sprite.billboard = 0

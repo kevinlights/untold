@@ -11,28 +11,14 @@ const AMBIENCE_TRACKS : Array = [
 	preload("res://audio/ambience/level3.ogg")
 ]
 
-const LEVELS : Array = [
-	"res://maps/level1.png",
-	"res://maps/level2.png",
-	"res://maps/level3.png",
-	"res://maps/level4.png"
-]
-
-const PALETTES : Array = [
-	preload("res://textures/palettes/slso8.png"),
-	preload("res://textures/palettes/title.png"),
-	preload("res://textures/palettes/hot.png"),
-	preload("res://textures/palettes/cold_blue.png")
-]
-
 func fade_out_ambience() -> void:
 	tween.interpolate_property(ambience, "volume_db", ambience.volume_db, -80, 3.0)
 	tween.start()
 
 func _ready():
 	GameSession.enter_level()
-	LevelBuilder.load_map(LEVELS[GameSession.level], level)
-	ui.init_map(LEVELS[GameSession.level])
+	LevelBuilder.load_map(GameContent.get_map(GameSession.level), level)
+	ui.set_map(GameContent.get_map(GameSession.level))
 	if GameSession.level < 3:
 		ambience.stream = AMBIENCE_TRACKS[GameSession.level]
 		tween.interpolate_property(ambience, "volume_db", -30.0, -10.0, 3.0)
@@ -40,7 +26,7 @@ func _ready():
 		yield(get_tree().create_timer(0.1), "timeout")
 		ambience.play()
 		yield(get_tree().create_timer(1.0), "timeout")
-	ui.set_palette(PALETTES[GameSession.level])
+	ui.set_palette(GameContent.get_palette(GameSession.level))
 	ui.update_ui()
 	ui.fade_in()
 	level.start_level()
