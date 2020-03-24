@@ -96,19 +96,19 @@ func _input(event : InputEvent) -> void:
 #		translation.y -= 0.1
 	if not can_move:
 		return
-	if event.is_action_pressed("ui_up"):
+	if event.is_action_pressed("move_forwards"):
 		move(board_position + get_facing_vector())
-	if event.is_action_pressed("ui_down"):
+	if event.is_action_pressed("move_backwards"):
 		move(board_position - get_facing_vector())
-	if event.is_action_pressed("ui_left"):
+	if event.is_action_pressed("turn_left"):
 		facing += 90.0
 		get_tree().call_group("board_object", "update_angle", facing)
 		get_tree().call_group("ui", "update_ui")
-	if event.is_action_pressed("ui_right"):
+	if event.is_action_pressed("turn_right"):
 		facing -= 90.0
 		get_tree().call_group("board_object", "update_angle", facing)
 		get_tree().call_group("ui", "update_ui")
-	if event.is_action_pressed("ui_select"):
+	if event.is_action_pressed("interact"):
 		try_to_interact(board_position + get_facing_vector())
 	if event.is_action_pressed("bomb"):
 		plant_bomb()
@@ -126,5 +126,6 @@ func _process(delta : float) -> void:
 
 func _ready() -> void:
 	facing = 0.0
+	rotation_degrees.y = 0.0
 	board_position = Vector2(translation.x, translation.z)
 	get_tree().call_group("board_object", "update_angle", facing)
