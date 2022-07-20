@@ -9,6 +9,7 @@ onready var audio_step = $Audio_Step
 onready var audio_swim = $Audio_Swim
 onready var audio_splash = $Audio_Splash
 onready var audio_leave_water = $Audio_LeaveWater
+onready var tween : Tween = $Tween
 
 onready var step_audio : Array = [
 	preload("res://audio/player_step1.ogg"),
@@ -21,8 +22,11 @@ var facing : float
 var underwater : bool
 var can_move : bool
 
+func is_moving() -> bool:
+	return tween.is_active()
+
 func get_facing_vector() -> Vector2:
-	return -Vector2(sin(deg2rad(facing)), cos(deg2rad(facing)))
+	return Vector2.UP.rotated(-facing)
 
 func finish_turn() -> void:
 	can_move = false
@@ -34,15 +38,18 @@ func move(destination : Vector2) -> void:
 		if level.is_water_at(destination):
 			board_position = destination
 			audio_swim.play()
+			
 			moved = true
 		elif level.is_space_free(destination):
 			board_position = destination
+			tween.interpolate_property(camera, "translation", camera.translation, Vector3(0.0, 0.5, -0.1), 0.2, Tween.TRANS_CIRC, Tween.EASE_OUT)
 			audio_leave_water.play()
 			moved = true
 			underwater = false
 	else:
 		if level.is_water_at(destination):
 			board_position = destination
+			tween.interpolate_property(camera, "translation", camera.translation, Vector3(0.0, -0.1, -0.1), 0.2, Tween.TRANS_CIRC, Tween.EASE_OUT)
 			audio_splash.play()
 			underwater = true
 			moved = true
@@ -52,8 +59,17 @@ func move(destination : Vector2) -> void:
 			audio_step.play()
 			moved = true
 	if moved:
+		tween.interpolate_property(self, "translation", translation, Vector3(board_position.x, translation.y, board_position.y), 0.2, Tween.TRANS_CIRC, Tween.EASE_OUT)
+		tween.start()
 		finish_turn()
 		GameSession.steps_taken += 1
+
+func turn(change : float) -> void:
+	facing += change
+	tween.interpolate_property(self, "rotation", rotation, Vector3(0.0, facing, 0.0), 0.2, Tween.TRANS_CIRC, Tween.EASE_OUT)
+	tween.start()
+	get_tree().call_group("board_object", "update_angle", facing)
+	get_tree().call_group("ui", "update_ui")
 
 func can_interact() -> bool:
 	var position : Vector2 = board_position + get_facing_vector()
@@ -87,27 +103,16 @@ func plant_bomb() -> void:
 	finish_turn()
 
 func _input(event : InputEvent) -> void:
-#	if event is InputEventMouseMotion:
-#		camera.rotation_degrees.x -= event.relative.y
-#		camera.rotation_degrees.y -= event.relative.x
-#	if event.is_action_pressed("ui_page_up"):
-#		translation.y += 0.1
-#	if event.is_action_pressed("ui_page_down"):
-#		translation.y -= 0.1
-	if not can_move:
+	if is_moving() or !can_move:
 		return
 	if event.is_action_pressed("move_forwards"):
 		move(board_position + get_facing_vector())
 	if event.is_action_pressed("move_backwards"):
 		move(board_position - get_facing_vector())
 	if event.is_action_pressed("turn_left"):
-		facing += 90.0
-		get_tree().call_group("board_object", "update_angle", facing)
-		get_tree().call_group("ui", "update_ui")
+		turn(PI / 2.0)
 	if event.is_action_pressed("turn_right"):
-		facing -= 90.0
-		get_tree().call_group("board_object", "update_angle", facing)
-		get_tree().call_group("ui", "update_ui")
+		turn(-PI / 2.0)
 	if event.is_action_pressed("interact"):
 		try_to_interact(board_position + get_facing_vector())
 	if event.is_action_pressed("bomb"):
@@ -118,11 +123,7 @@ func _input(event : InputEvent) -> void:
 			ui.map.visible = !ui.map.visible
 
 func _process(delta : float) -> void:
-	rotation_degrees.y = lerp(rotation_degrees.y, facing, delta * 20.0)
-	translation.x = lerp(translation.x, board_position.x, delta * 20.0)
-	translation.z = lerp(translation.z, board_position.y, delta * 20.0)
-	var y_target : float = -0.1 if underwater else 0.5
-	camera.translation.y = lerp(camera.translation.y, y_target, delta * 20.0)
+	pass
 
 func _ready() -> void:
 	facing = 0.0
