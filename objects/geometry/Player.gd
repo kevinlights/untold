@@ -105,14 +105,6 @@ func plant_bomb() -> void:
 func _input(event : InputEvent) -> void:
 	if is_moving() or !can_move:
 		return
-	if event.is_action_pressed("move_forwards"):
-		move(board_position + get_facing_vector())
-	if event.is_action_pressed("move_backwards"):
-		move(board_position - get_facing_vector())
-	if event.is_action_pressed("turn_left"):
-		turn(PI / 2.0)
-	if event.is_action_pressed("turn_right"):
-		turn(-PI / 2.0)
 	if event.is_action_pressed("interact"):
 		try_to_interact(board_position + get_facing_vector())
 	if event.is_action_pressed("bomb"):
@@ -121,6 +113,18 @@ func _input(event : InputEvent) -> void:
 		if GameSession.got_map:
 			var ui = get_tree().get_nodes_in_group("ui")[0]
 			ui.map.visible = !ui.map.visible
+
+func _physics_process(delta : float) -> void:
+	if is_moving() or !can_move:
+		return
+	if Input.is_action_pressed("move_forwards"):
+		move(board_position + get_facing_vector())
+	if Input.is_action_pressed("move_backwards"):
+		move(board_position - get_facing_vector())
+	if Input.is_action_pressed("turn_left"):
+		turn(PI / 2.0)
+	if Input.is_action_pressed("turn_right"):
+		turn(-PI / 2.0)
 
 func _ready() -> void:
 	facing = 0.0
