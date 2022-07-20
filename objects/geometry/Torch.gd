@@ -2,10 +2,10 @@ extends "res://objects/geometry/BoardObject.gd"
 
 onready var sprite = $Sprite3D
 onready var light = $OmniLight
+onready var anim_player : AnimationPlayer = $AnimationPlayer
 
 func is_solid() -> bool:
 	return true
 
-func _process(delta : float) -> void:
-	var time : float = OS.get_ticks_msec() / 1000.0
-	light.light_energy = 1 + (sin(time * 2.0) * 0.5)
+func _ready() -> void:
+	anim_player.play("light")

@@ -17,10 +17,7 @@ roughness = 0.0
 material = SubResource( 2 )
 size = Vector2( 1, 1 )
 
-[node name="Water" type="Spatial" groups=[
-"board_object",
-"water",
-]]
+[node name="Water" type="Spatial" groups=["board_object", "water"]]
 script = ExtResource( 3 )
 
 [node name="Floor" type="MeshInstance" parent="."]

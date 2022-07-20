@@ -5,6 +5,7 @@ const OBJ_WALL_BROKEN = preload("res://objects/geometry/WallBroken.tscn")
 const MAX_ROUTE_DEPTH : int = 32
 
 var player : Spatial
+var map : Image
 
 var override_game : bool = false
 
@@ -12,6 +13,10 @@ func get_player() -> Spatial:
 	return player
 
 func is_space_free(position : Vector2) -> bool:
+	# First, check for blockers that don't move
+	if map.get_pixelv(position) in Constants.STATIC_BLOCKERS:
+		return false
+	# Now check for a dynamic blocker
 	for object in get_tree().get_nodes_in_group("board_object"):
 		if object.board_position == position and object.is_solid():
 			return false

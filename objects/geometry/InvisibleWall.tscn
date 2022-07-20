@@ -7,9 +7,7 @@
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 1, 1, 1 )
 
-[node name="Invisible" type="Spatial" groups=[
-"board_object",
-]]
+[node name="Invisible" type="Spatial" groups=["board_object"]]
 script = ExtResource( 3 )
 
 [node name="Floor" type="MeshInstance" parent="."]

@@ -122,9 +122,6 @@ func _input(event : InputEvent) -> void:
 			var ui = get_tree().get_nodes_in_group("ui")[0]
 			ui.map.visible = !ui.map.visible
 
-func _process(delta : float) -> void:
-	pass
-
 func _ready() -> void:
 	facing = 0.0
 	rotation_degrees.y = 0.0

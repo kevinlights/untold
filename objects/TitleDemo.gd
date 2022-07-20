@@ -3,6 +3,8 @@ extends Spatial
 onready var level = $Level
 onready var camera = $Camera
 
+var map : Image
+
 func is_space_free(position : Vector2) -> bool:
 	for object in get_tree().get_nodes_in_group("board_object"):
 		if object.board_position == position and object.is_solid():

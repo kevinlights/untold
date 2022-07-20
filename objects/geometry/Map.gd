@@ -2,6 +2,7 @@ extends "res://objects/geometry/BoardObject.gd"
 
 onready var sprite = $Sprite3D
 onready var audio_get = $Audio_Get
+onready var anim_player : AnimationPlayer = $AnimationPlayer
 
 onready var collected : bool = false
 
@@ -21,6 +22,5 @@ func tick() -> void:
 		var ui = get_tree().get_nodes_in_group("ui")[0]
 		ui.map.visible = !ui.map.visible
 
-func _process(delta : float) -> void:
-	var time : float = OS.get_ticks_msec() / 1000.0
-	sprite.translation.y = 0.5 + (sin(time * 2.0) * 0.05)
+func _ready() -> void:
+	anim_player.play("float")
