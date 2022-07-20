@@ -7,9 +7,6 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -29,8 +26,8 @@ margin_left = -340.0
 margin_top = -39.5
 margin_right = 340.0
 margin_bottom = 39.5
-custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 0.501961, 0.501961, 0.501961, 1 )
+custom_fonts/font = ExtResource( 4 )
 text = "The truth has not yet come to light.
 You must uncover every secret if you are to gain the answers you seek."
 autowrap = true

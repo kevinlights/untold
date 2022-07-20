@@ -25,7 +25,6 @@ const MESSAGE_A : Array = [
 ]
 
 const MESSAGE_B : Array = [
-	[],[],[],[],
 	[20,8,1,14,11,0,10,15,21,0,6,15,18,0,16,12,1,10,9,14,7]
 ]
 
@@ -45,6 +44,7 @@ func _input(event : InputEvent) -> void:
 		get_tree().change_scene("res://scenes/TitleScreen.tscn")
 
 func _ready() -> void:
+	Engine.time_scale = 3.0
 	yield(get_tree().create_timer(2.0), "timeout")
 	var bus : int = AudioServer.get_bus_index("SFX")
 	AudioServer.set_bus_volume_db(bus, 0)

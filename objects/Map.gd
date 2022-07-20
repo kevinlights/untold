@@ -15,17 +15,17 @@ func _draw() -> void:
 				var c : Color = map.get_pixel(x, y)
 				var t : Vector2 = Vector2(0, 0)
 				match c:
-					LevelBuilder.COLOUR_WALL:
+					Constants.COLOUR_WALL:
 						t = Vector2(1, 0)
-					LevelBuilder.COLOUR_WEAK_WALL:
+					Constants.COLOUR_WEAK_WALL:
 						t = Vector2(1, 0)
-					LevelBuilder.COLOUR_WATER:
+					Constants.COLOUR_WATER:
 						t = Vector2(3, 0)
-					LevelBuilder.COLOUR_WATER_TUNNEL:
+					Constants.COLOUR_WATER_TUNNEL:
 						t = Vector2(3, 0)
-					LevelBuilder.COLOUR_DOOR:
+					Constants.COLOUR_DOOR:
 						t = Vector2(2, 0)
-					LevelBuilder.COLOUR_LOCKED_DOOR:
+					Constants.COLOUR_LOCKED_DOOR:
 						t = Vector2(2, 0)
 				draw_texture_rect_region(TILESET, Rect2(position * TILE_SIZE, TILE_SIZE), Rect2(t * TILE_SIZE, TILE_SIZE))
 	draw_texture_rect_region(TILESET, Rect2(player_position * TILE_SIZE, TILE_SIZE), Rect2(Vector2(0, 1) * TILE_SIZE, TILE_SIZE))

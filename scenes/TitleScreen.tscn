@@ -61,9 +61,6 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 360.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PressStart" parent="CanvasLayer/Center" instance=ExtResource( 8 )]
 
@@ -73,11 +70,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -27.9999
 margin_bottom = -7.99994
-custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0.752941, 0.752941, 0.752941, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
+custom_fonts/font = ExtResource( 9 )
 text = "© John Gabriel 2020 | GNU GPLv3"
 align = 1
 __meta__ = {
@@ -93,11 +90,11 @@ margin_left = -142.0
 margin_top = -27.9999
 margin_right = -14.0
 margin_bottom = -7.99994
-custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0.627451, 0.627451, 0.627451, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
+custom_fonts/font = ExtResource( 9 )
 text = "v1.0.2"
 align = 2
 __meta__ = {
@@ -137,4 +134,5 @@ bus = "SFX"
 
 [node name="Timer_ResetDemo" type="Timer" parent="."]
 wait_time = 31.0
+
 [connection signal="timeout" from="Timer_ResetDemo" to="." method="_on_Timer_ResetDemo_timeout"]
