@@ -8,10 +8,7 @@
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 1, 0.2, 1 )
 
-[node name="Door" type="Spatial" groups=[
-"board_object",
-"door",
-]]
+[node name="Door" type="Spatial" groups=["board_object", "door", "dynamic_blocker", "interactable"]]
 script = ExtResource( 2 )
 
 [node name="Mesh" type="MeshInstance" parent="."]

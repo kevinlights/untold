@@ -5,10 +5,10 @@ onready var sprite = $Sprite3D
 var facing : float
 
 func update_angle(camera_angle : float) -> void:
-	while camera_angle < 360.0:
-		camera_angle += 360.0
-	var angle : int = floor(fmod(facing + camera_angle, 360.0) / 90.0)
+	while camera_angle < PI * 2.0:
+		camera_angle += PI * 2.0
+	var angle : int = floor(fmod(facing + camera_angle, PI * 2.0) / (PI / 2.0))
 	sprite.frame = angle
 
 func _ready() -> void:
-	facing = rand_range(0, 4) * 90.0
+	facing = rand_range(0, 4) * (PI / 2.0)

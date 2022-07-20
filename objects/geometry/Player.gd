@@ -26,7 +26,7 @@ func is_moving() -> bool:
 	return tween.is_active()
 
 func get_facing_vector() -> Vector2:
-	return Vector2.UP.rotated(-facing)
+	return Vector2.UP.rotated(-facing).snapped(Vector2.ONE)
 
 func finish_turn() -> void:
 	can_move = false
@@ -38,7 +38,6 @@ func move(destination : Vector2) -> void:
 		if level.is_water_at(destination):
 			board_position = destination
 			audio_swim.play()
-			
 			moved = true
 		elif level.is_space_free(destination):
 			board_position = destination
@@ -73,13 +72,13 @@ func turn(change : float) -> void:
 
 func can_interact() -> bool:
 	var position : Vector2 = board_position + get_facing_vector()
-	for object in get_tree().get_nodes_in_group("board_object"):
+	for object in get_tree().get_nodes_in_group("interactable"):
 		if object.is_interactive() and object.board_position == position:
 			return true
 	return false
 
 func try_to_interact(position : Vector2) -> void:
-	for object in get_tree().get_nodes_in_group("board_object"):
+	for object in get_tree().get_nodes_in_group("interactable"):
 		if object.is_interactive() and object.board_position == position:
 			object.interact()
 			finish_turn()

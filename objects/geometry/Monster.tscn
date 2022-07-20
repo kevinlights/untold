@@ -3,10 +3,7 @@
 [ext_resource path="res://objects/geometry/Monster.gd" type="Script" id=1]
 [ext_resource path="res://textures/monster_corpse.png" type="Texture" id=2]
 
-[node name="Monster" type="Spatial" groups=[
-"board_object",
-"monster",
-]]
+[node name="Monster" type="Spatial" groups=["board_object", "monster"]]
 script = ExtResource( 1 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

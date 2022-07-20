@@ -17,7 +17,7 @@ func is_space_free(position : Vector2) -> bool:
 	if map.get_pixelv(position) in Constants.STATIC_BLOCKERS:
 		return false
 	# Now check for a dynamic blocker
-	for object in get_tree().get_nodes_in_group("board_object"):
+	for object in get_tree().get_nodes_in_group("dynamic_blocker"):
 		if object.board_position == position and object.is_solid():
 			return false
 	return true
@@ -30,10 +30,7 @@ func is_space_sight_blocked(position : Vector2) -> bool:
 	return false
 
 func is_water_at(position : Vector2) -> bool:
-	for object in get_tree().get_nodes_in_group("board_object"):
-		if object.board_position == position and object is Water:
-			return true
-	return false
+	return map.get_pixelv(position) in Constants.WATER_CELLS
 
 class Route:
 	var steps : Array

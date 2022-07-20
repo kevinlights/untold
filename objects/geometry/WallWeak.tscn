@@ -6,10 +6,7 @@
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 1, 1, 1 )
 
-[node name="WeakWall" type="MeshInstance" groups=[
-"board_object",
-"wall_weak",
-]]
+[node name="WeakWall" type="MeshInstance" groups=["board_object", "dynamic_blocker", "wall_weak"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )
