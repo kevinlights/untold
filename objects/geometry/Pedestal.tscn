@@ -5,7 +5,7 @@
 [ext_resource path="res://audio/glyph_hum.ogg" type="AudioStream" id=3]
 [ext_resource path="res://textures/glyphs.png" type="Texture" id=4]
 
-[node name="Pedestal" type="Spatial" groups=["board_object", "pedestal"]]
+[node name="Pedestal" type="Spatial" groups=["board_object", "interactable", "pedestal"]]
 script = ExtResource( 1 )
 
 [node name="Sprite_Glyph" type="Sprite3D" parent="."]

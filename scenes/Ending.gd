@@ -44,7 +44,6 @@ func _input(event : InputEvent) -> void:
 		get_tree().change_scene("res://scenes/TitleScreen.tscn")
 
 func _ready() -> void:
-	Engine.time_scale = 3.0
 	yield(get_tree().create_timer(2.0), "timeout")
 	var bus : int = AudioServer.get_bus_index("SFX")
 	AudioServer.set_bus_volume_db(bus, 0)
