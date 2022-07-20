@@ -12,8 +12,6 @@
 [ext_resource path="res://textures/ui/level_pipe.png" type="Texture" id=11]
 [ext_resource path="res://textures/ui/level_circle.png" type="Texture" id=12]
 
-
-
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 7 )
 
@@ -21,15 +19,13 @@ shader = ExtResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color( 0.501961, 0.501961, 0.501961, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 6 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -97,10 +93,10 @@ margin_top = 6.0
 margin_right = 104.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 64, 0 )
-custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
+custom_fonts/font = ExtResource( 2 )
 text = "24"
 align = 1
 
@@ -124,10 +120,10 @@ margin_top = 6.0
 margin_right = 104.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 64, 0 )
-custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
+custom_fonts/font = ExtResource( 2 )
 text = "5/16"
 align = 1
 
@@ -151,10 +147,10 @@ margin_top = 6.0
 margin_right = 104.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 64, 0 )
-custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
+custom_fonts/font = ExtResource( 2 )
 text = "0/1"
 align = 1
 
