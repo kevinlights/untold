@@ -30,4 +30,3 @@ func _ready():
 	ui.update_ui()
 	ui.fade_in()
 	level.start_level()
-	
