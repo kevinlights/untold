@@ -75,11 +75,8 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
 custom_fonts/font = ExtResource( 9 )
-text = "© John Gabriel 2020 | GNU GPLv3"
+text = "© John Gabriel 2020-2022 | GNU GPLv3"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label_VersionNumber" type="Label" parent="CanvasLayer"]
 anchor_left = 1.0
@@ -95,7 +92,7 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
 custom_fonts/font = ExtResource( 9 )
-text = "v1.0.2"
+text = "v1.0.3"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
